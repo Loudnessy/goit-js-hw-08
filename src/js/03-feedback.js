@@ -20,15 +20,18 @@ if (evt.target.hasAttribute('rows')) {
 currentInput.message = evt.target.value
 }
 localStorage.setItem("feedback-form-state", JSON.stringify(currentInput))
-console.log(currentInput);
+}
+if (localStorage.getItem("feedback-form-state") === null) {
+    return
+} else {
+    input.value = JSON.parse(localStorage.getItem("feedback-form-state")).email
+textarea.value = JSON.parse(localStorage.getItem("feedback-form-state")).message
 }
 
-input.value = JSON.parse(localStorage.getItem("feedback-form-state")).email
-textarea.value = JSON.parse(localStorage.getItem("feedback-form-state")).message
 
-button.addEventListener("click", onClick)
+form.addEventListener("submit", onClick)
 
-function onClick (evt) {
+function onClick(evt) {
     evt.preventDefault()
     console.log(JSON.parse(localStorage.getItem("feedback-form-state")));
     console.log(JSON.parse(localStorage.getItem("feedback-form-state")).email);
@@ -37,7 +40,7 @@ function onClick (evt) {
     input.value = " "
 textarea.value = " "
 }
-// console.log(JSON.parse(localStorage.getItem("feedback-form-state"))); 
+
 
 
 
